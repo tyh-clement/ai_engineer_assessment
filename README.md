@@ -41,10 +41,10 @@ fastapi dev asr/asr_api.py --port 8001
 
 ## Transcribe Common Voice (cv-decode.py)
 
-With the API running on port 8001, transcribe every file listed in `common_voice/cv-valid-dev.csv`:
+With the API running on port 8001, transcribe every file listed in `asr/common_voice/cv-valid-dev.csv`:
 
 ```bash
-python cv-decode.py
+python asr/cv-decode.py
 ```
 
-This adds a `generated_text` column and saves it back to `common_voice/cv-valid-dev.csv`. The file is only written after all files are transcribed. Edit the constants at the top of the script to change the API URL or paths.
+This adds a `generated_text` column and saves it back to `asr/common_voice/cv-valid-dev.csv`. The file is only written after all files are transcribed. Edit the constants at the top of the script to change the API URL or paths.
