@@ -1,0 +1,6 @@
+.git
+.venv
+.env
+asr/models
+asr/common_voice
+**/__pycache__

@@ -48,3 +48,16 @@ python asr/cv-decode.py
 ```
 
 This adds a `generated_text` column and saves it back to `asr/common_voice/cv-valid-dev.csv`. The file is only written after all files are transcribed. Edit the constants at the top of the script to change the API URL or paths.
+
+## Run with Docker
+
+The image does not contain the model. Download it first (see above), then build the image and start the service from the `asr/` folder. Compose mounts `asr/models/` into the container at `/models` (read-only):
+
+```bash
+python asr/download_model.py
+cd asr
+bash build_docker.sh
+docker compose up
+```
+
+The API is then available at http://localhost:8001 (docs at `/docs`).

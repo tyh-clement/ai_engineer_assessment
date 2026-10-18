@@ -7,3 +7,4 @@ soundfile==0.14.0
 python-multipart==0.0.32
 requests==2.34.2
 tqdm==4.70.1
+python-dotenv==1.2.4
