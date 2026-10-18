@@ -10,15 +10,15 @@ logging.set_verbosity_error()
 
 MODEL_NAME = "facebook/wav2vec2-large-960h"
 SAMPLE_RATE = 16000
-REPO_ROOT = Path(__file__).resolve().parent.parent
+ASR_DIR = Path(__file__).resolve().parent
 
 
 def get_model_dir(base_dir: str | os.PathLike | None = None) -> Path:
     """Local directory holding the model: <base>/<model name>.
 
-    Base defaults to $MODEL_DIR, falling back to <repo root>/models.
+    Base defaults to $MODEL_DIR, falling back to models/ next to this file.
     """
-    base = base_dir or os.environ.get("MODEL_DIR") or REPO_ROOT / "models"
+    base = base_dir or os.environ.get("MODEL_DIR") or ASR_DIR / "models"
     return Path(base).expanduser().resolve() / MODEL_NAME.split("/")[-1]
 
 

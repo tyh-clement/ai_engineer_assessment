@@ -24,7 +24,7 @@ The API only loads the model from disk and never downloads it. Download it once 
 python asr/download_model.py
 ```
 
-The model is stored in `<base>/wav2vec2-large-960h`. The base directory defaults to `models/` in the repo root; change it with `--model-dir` or the `MODEL_DIR` env var (e.g. in `.env`). The API reads the same `MODEL_DIR`, so set it consistently:
+The model is stored in `<base>/wav2vec2-large-960h`. The base directory defaults to `asr/models/`; change it with `--model-dir` or the `MODEL_DIR` env var (e.g. in `.env`). The API reads the same `MODEL_DIR`, so set it consistently:
 
 ```bash
 python asr/download_model.py --model-dir /path/to/models

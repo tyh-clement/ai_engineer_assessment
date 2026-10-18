@@ -12,7 +12,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=f"Download {MODEL_NAME} locally.")
     parser.add_argument(
         "--model-dir",
-        help="Base directory for models (default: $MODEL_DIR or <repo root>/models). "
+        help="Base directory for models (default: $MODEL_DIR or asr/models). "
         f"The model is stored in <model-dir>/{MODEL_NAME.split('/')[-1]}.",
     )
     args = parser.parse_args()

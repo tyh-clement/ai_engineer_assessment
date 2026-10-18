@@ -222,3 +222,5 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 cv-valid-dev/
+asr/models/
+asr/models/
