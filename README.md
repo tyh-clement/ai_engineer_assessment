@@ -16,6 +16,21 @@ On Windows, activate the environment with:
 .venv\Scripts\Activate.ps1
 ```
 
+## Download the model
+
+The API only loads the model from disk and never downloads it. Download it once first:
+
+```bash
+python asr/download_model.py
+```
+
+The model is stored in `<base>/wav2vec2-large-960h`. The base directory defaults to `models/` in the repo root; change it with `--model-dir` or the `MODEL_DIR` env var (e.g. in `.env`). The API reads the same `MODEL_DIR`, so set it consistently:
+
+```bash
+python asr/download_model.py --model-dir /path/to/models
+MODEL_DIR=/path/to/models fastapi dev asr/asr_api.py --port 8001
+```
+
 ## Run the API
 
 With the virtual environment activated, start the FastAPI development server:
