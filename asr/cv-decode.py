@@ -14,7 +14,8 @@ def transcribe(filename):
     with open(AUDIO_DIR / filename, "rb") as f:
         response = requests.post(API_URL, files={"file": f})
     response.raise_for_status()
-    return response.json()["transcription"]
+    result = response.json()
+    return result["transcription"], result["duration"]
 
 
 with open(CSV_PATH, newline="") as f:
@@ -25,7 +26,7 @@ with open(CSV_PATH, newline="") as f:
     rows = list(reader)
 
 for row in tqdm(rows):
-    row["generated_text"] = transcribe(row["filename"])
+    row["generated_text"], row["duration"] = transcribe(row["filename"])
 
 with open(CSV_PATH, "w", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=columns)
