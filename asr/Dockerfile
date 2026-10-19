@@ -5,8 +5,8 @@ ENV PIP_ROOT_USER_ACTION=ignore \
 
 WORKDIR /app
 
-COPY requirements.asr.txt .
-RUN pip install --no-cache-dir -r requirements.asr.txt
+COPY docker.requirements.txt .
+RUN pip install --no-cache-dir -r docker.requirements.txt
 
 COPY asr_api.py asr_model.py ./
 
