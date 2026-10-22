@@ -1,0 +1,11 @@
+services:
+  search-ui:
+    build:
+      context: ./
+      args:
+        VITE_USE_PROXY: "true"
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
