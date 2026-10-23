@@ -1,15 +1,15 @@
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+    restart: always
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
-      - http.cors.enabled=true
-      - http.cors.allow-origin=http://localhost:3000
-      - http.cors.allow-headers=X-Requested-With,Content-Type,Content-Length,Authorization,Accept,x-elastic-client-meta
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
     ports:
       - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
 
   indexer:
     build: ./indexer
@@ -18,9 +18,5 @@ services:
     depends_on:
       - elasticsearch
 
-  search-ui:
-    build: ./search-ui
-    ports:
-      - "3000:80"
-    depends_on:
-      - elasticsearch
+volumes:
+  esdata:
