@@ -1,8 +1,10 @@
 # ai_engineer_assessment
 
-## Setup
+## ASR
 
-Create and activate a virtual environment, then install the dependencies:
+### Setup
+
+Create and activate a virtual environment, then install the Python dependencies:
 
 ```bash
 python3 -m venv .venv
@@ -16,7 +18,7 @@ On Windows, activate the environment with:
 .venv\Scripts\Activate.ps1
 ```
 
-## Download the model
+### Download the model
 
 The API only loads the model from disk and never downloads it. Download it once first:
 
@@ -31,7 +33,7 @@ python asr/download_model.py --model-dir /path/to/models
 MODEL_DIR=/path/to/models fastapi dev asr/asr_api.py --port 8001
 ```
 
-## Run the API
+### Run the API
 
 With the virtual environment activated, start the FastAPI development server:
 
@@ -39,7 +41,7 @@ With the virtual environment activated, start the FastAPI development server:
 fastapi dev asr/asr_api.py --port 8001
 ```
 
-## Transcribe Common Voice (cv-decode.py)
+### Transcribe Common Voice
 
 With the API running on port 8001, transcribe every file listed in `asr/common_voice/cv-valid-dev.csv`:
 
@@ -49,15 +51,20 @@ python asr/cv-decode.py
 
 This adds a `generated_text` column and saves it back to `asr/common_voice/cv-valid-dev.csv`. The file is only written after all files are transcribed. Edit the constants at the top of the script to change the API URL or paths.
 
-## Run with Docker
+### Run with Docker
 
-The image does not contain the model. Download it first (see above), then build the image and start the service from the `asr/` folder. Compose mounts `asr/models/` into the container at `/models` (read-only):
+The image does not contain the model. Download it first (see above), then build and start the service with Docker Compose from the `asr/` folder. Compose mounts `asr/models/` into the container at `/models` (read-only):
 
 ```bash
 python asr/download_model.py
 cd asr
-bash build_docker.sh
-docker compose up
+docker compose up --build
 ```
 
 The API is then available at http://localhost:8001 (docs at `/docs`).
+
+## Elasticsearch Search Application
+
+The search application is deployed at:
+
+http://ec2-15-134-42-233.ap-southeast-2.compute.amazonaws.com/

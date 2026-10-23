@@ -1,6 +1,7 @@
 services:
   asr-api:
-    image: asr-api:latest
+    build:
+      context: .
     ports:
       - "8001:8001"
     volumes:
